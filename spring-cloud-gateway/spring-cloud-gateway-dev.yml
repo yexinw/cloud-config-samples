@@ -1,0 +1,33 @@
+spring:
+  redis:
+    host: 192.168.174.128
+    port: 6379
+zuul:
+  routes:
+#    product:
+#      path: /product/**
+#      serviceId: spring-cloud-product
+    #简洁写法
+    spring-cloud-product: /product/**
+    spring-cloud-order: /order/**
+#  ignored-patterns:
+#    - /**/product/listForOrder
+  sensitive-headers:
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+spring-cloud-product:
+  ribbon:
+    Connectimeout: 6000
+    ReadTimeout: 9000
+
+spring-cloud-order:
+  ribbon:
+    Connectimeout: 6000
+    ReadTimeout: 9000
